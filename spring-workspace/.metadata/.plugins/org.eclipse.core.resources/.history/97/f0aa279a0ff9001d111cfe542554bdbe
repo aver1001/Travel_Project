@@ -1,0 +1,10 @@
+package com.ssafy.trip.util;
+
+import javax.servlet.http.HttpSessionListener;
+import javax.websocket.Session;
+
+import org.apache.catalina.SessionListener;
+
+public class sl implements HttpSessionListener{
+	
+}

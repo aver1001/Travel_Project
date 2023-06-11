@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.ssafy.trip.model.dao.MemberDAO">
+ 
+ 	<select id="login" parameterType="MemberVO" resultType="String">
+ 		SELECT name FROM member WHERE id=#{id} AND password=#{password}
+ 	</select>
+ 	
+ 	<select id="selectOne" parameterType="MemberVO" resultType="MemberVO">
+ 		SELECT id, name, email  
+ 		FROM member  
+		WHERE id=#{id} 
+ 	</select>
+ 	<select id="selectOne2" parameterType="MemberVO" resultType="MemberVO">
+ 		SELECT *, sido_name AS sido, gugun_name AS gugun 
+ 		FROM member 
+		JOIN sido ON member.sido_code = sido.sido_code  
+		JOIN gugun ON member.gugun_code = gugun.gugun_code AND member.sido_code = gugun.sido_code 
+		WHERE id=#{id} 
+ 	</select>
+ 	
+ 	<insert id="regist" parameterType="MemberVO">
+ 		INSERT INTO member VALUES (#{id}, #{password}, #{name}, #{email}, #{sidoCode}, #{gugunCode}, NOW())
+ 	</insert>
+ 	
+ </mapper>
